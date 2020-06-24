@@ -12,7 +12,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -23,12 +26,17 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 public class Jukebox implements Runnable {
 
     public void run() {
-
+    	String Giorno = "JoJo's Bizarre Adventure_Golden Wind OST_ _Giorno's Theme_ Il vento d'oro (Main Theme) (192  kbps).mp3";
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-
+Song Giorn = new Song(Giorno);
 		// 3. Play the Song
-
+Giorn.play();
+	JFrame songs = new JFrame();
+	JPanel panel = new JPanel();
+	songs.add(panel);
+	songs.pack();
+	JButton play = new JButton();
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
