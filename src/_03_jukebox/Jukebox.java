@@ -5,6 +5,10 @@ package _03_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -23,20 +27,68 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
-
-    public void run() {
-    	String Giorno = "JoJo's Bizarre Adventure_Golden Wind OST_ _Giorno's Theme_ Il vento d'oro (Main Theme) (192  kbps).mp3";
-		// 1. Find an mp3 on your computer or on the Internet.
-		// 2. Create a Song object for that mp3
-Song Giorn = new Song(Giorno);
-		// 3. Play the Song
-Giorn.play();
+public class Jukebox implements Runnable, ActionListener {
+	String Giorno = "JoJo's Bizarre Adventure_Golden Wind OST_ _Giorno's Theme_ Il vento d'oro (Main Theme) (192  kbps).mp3";
+	String Josuke = "Yugo_Kanno_-_Josuke_Theme_(mp3.pm).mp3";
+	String jotaro = "Jotaro.mp3";
+	Song Josuk = new Song(Josuke);
+	Song Giorn = new Song(Giorno);
 	JFrame songs = new JFrame();
 	JPanel panel = new JPanel();
+	JButton play = new JButton();
+	JButton huh = new JButton();
+	JLabel josuke = new JLabel();
+	JLabel cs = new JLabel();
+	JButton Jota = new JButton();
+	JLabel Jotar = new JLabel();
+	Song Jotaro = new Song(jotaro);
+	JButton STOP = new JButton();
+	JLabel Stop = new JLabel();
+	Song no = new Song("None.mp3");
+	Song BMS = new Song("BreakMyStride.mp3");
+	JLabel BMSlabel = new JLabel();
+	JButton BMSbutton = new JButton();
+    public void run() {
+// 1. Find an mp3 on your computer or on the Internet.
+		// 2. Create a Song object for that mp3
+
+
+		// 3. Play the Song
+
+    songs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	songs.setResizable(false);
 	songs.add(panel);
 	songs.pack();
-	JButton play = new JButton();
+	
+	panel.add(Jota);
+	panel.add(huh);
+	panel.add(play);
+	panel.add(BMSbutton);
+	panel.add(STOP);
+	
+	BMSlabel=loadImage("Break my stride.PNG");
+	Jotar=loadImage("Jotaro.jpg");
+	josuke=loadImage("josuke.jpg");
+	Stop=loadImage("stop.PNG");
+	cs=loadImage("7309292d750c3ced5e63874eb60158aa.jpg");
+	huh.add(josuke);
+	huh.addActionListener(this);
+	songs.setVisible(true);
+	STOP.add(Stop);
+	songs.pack();
+	Stop=loadImage("stop.PNG");
+	Jota.add(Jotar);
+	Jota.addActionListener(this);
+	songs.pack();
+	STOP.addActionListener(this);
+	BMSbutton.add(BMSlabel);
+	BMSbutton.addActionListener(this);
+	play.addActionListener(this);
+    play.add(cs);
+	
+	
+	
+	songs.pack();
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
@@ -54,9 +106,10 @@ Giorn.play();
 		return new JLabel(icon);
 	}
 
-}
 
-class Song {
+	
+
+ class Song {
 
 	private int duration;
 	private String songAddress;
@@ -140,4 +193,53 @@ class Song {
 		}
 	}
 }
+
+
+
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	JButton buttonPressed = (JButton) e.getSource();
+	if (buttonPressed.equals(huh)){
+		Josuk.play();
+		Giorn.stop();
+		Jotaro.stop();
+		BMS.stop();
+	}else if(buttonPressed.equals(play)) {
+		Giorn.play();
+		Josuk.stop();
+		Jotaro.stop();
+		BMS.stop();
+	}else if (buttonPressed.equals(STOP)) {
+		no.play();
+		Giorn.stop();
+		Jotaro.stop();
+		Josuk.stop();
+		BMS.stop();
+	}else if (buttonPressed.equals(Jota)) {
+		Giorn.stop();
+		Jotaro.play();
+		Josuk.stop();
+		BMS.stop();
+	}else if (buttonPressed.equals(BMSbutton)) {
+		Giorn.stop();
+		Jotaro.stop();
+		Josuk.stop();
+		BMS.play();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+
 

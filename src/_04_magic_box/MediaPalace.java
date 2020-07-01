@@ -8,7 +8,10 @@ package _04_magic_box;
 
 import java.applet.AudioClip;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -19,6 +22,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JLabel;
+
+import javazoom.jl.player.advanced.AdvancedPlayer;
 
 public class MediaPalace {
 
@@ -46,7 +51,7 @@ public class MediaPalace {
 	}
 
 	/*
-	 * To use this method, you must first have the javazoom jar inthe project.
+	 * To use this method, you must first have the javazoom jar in the project.
 	 * If this jar has not been added, you can download from: http://www.javazoom.net/javalayer/javalayer.html
 	 * Uncomment this method.
 	 */
@@ -114,6 +119,7 @@ public class MediaPalace {
 			}
 		}
 	}
+	
 
 }
 

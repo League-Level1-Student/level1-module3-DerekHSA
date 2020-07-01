@@ -18,8 +18,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class MagicBox extends JPanel implements Runnable, MouseListener {
+import _04_magic_box.Song;
 
+public class MagicBox extends JPanel implements Runnable, MouseListener {
+Song song = new Song("JoJo's Bizarre Adventure_Golden Wind OST_ _Giorno's Theme_ Il vento d'oro (Main Theme) (192  kbps)2.mp3");
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
@@ -54,6 +56,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -80,6 +83,10 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println(e.getX()+"    "+e.getY());
+		if (e.getX()<638&e.getX()>601&e.getY()<928&e.getY()>905) {
+			song.play();
+		}
+	
 	}
 
 	@Override
@@ -99,7 +106,9 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+		
+	}
 
-}
 
 
